@@ -2,7 +2,7 @@ document.getElementById('generate').addEventListener('click', function() {
   var prompt = document.getElementById('prompt').value;
   fetch('/.netlify/functions/generate-image', {
     method: 'POST',
-    body: JSON.stringify({ prompt: prompt })
+    body: JSON.stringify({ type: 'generate', prompt: prompt })
   })
   .then(response => response.json())
   .then(data => {
@@ -13,13 +13,13 @@ document.getElementById('generate').addEventListener('click', function() {
 
 document.getElementById('post').addEventListener('click', function() {
   var url = document.getElementById('image').src;
-  fetch('https://process.env.SUPABASE_URL // Your Supabase URL/rest/v1/images', {
+  fetch('/.netlify/functions/generate-image', {
     method: 'POST',
     headers: {
-      'apikey': 'process.env.SUPABASE_API_KEY // Your Supabase API key',
+      'apikey': process.env.SUPABASE_API_KEY,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ url: url })
+    body: JSON.stringify({ type: 'post', url: url })
   })
   .then(response => response.json())
   .then(data => {
