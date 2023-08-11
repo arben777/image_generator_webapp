@@ -13,10 +13,10 @@ document.getElementById('generate').addEventListener('click', function() {
 
 document.getElementById('post').addEventListener('click', function() {
   var url = document.getElementById('image').src;
-  fetch('https://<your-supabase-url>/rest/v1/images', {
+  fetch('https://process.env.SUPABASE_URL // Your Supabase URL/rest/v1/images', {
     method: 'POST',
     headers: {
-      'apikey': '<your-supabase-api-key>',
+      'apikey': 'process.env.SUPABASE_API_KEY // Your Supabase API key',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ url: url })

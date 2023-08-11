@@ -2,9 +2,9 @@ const axios = require('axios');
 
 exports.handler = async function(event, context) {
   const { prompt } = JSON.parse(event.body);
-  const response = await axios.post('https://<your-image-generation-api-url>', {
+  const response = await axios.post('https://process.env.REPLICATE_API_URL // Your Replicate API URL', {
     prompt: prompt,
-    apikey: '<your-image-generation-api-key>'
+    apikey: 'process.env.REPLICATE_API_TOKEN // Your Replicate API token'
   });
   return {
     statusCode: 200,
